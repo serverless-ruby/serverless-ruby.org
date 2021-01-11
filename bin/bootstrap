@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+echo '== Building containers =='
+
+docker pull amazon/aws-sam-cli-build-image-ruby2.7
+docker-compose build
+
+docker-compose run serverless-ruby-org \
+  ./bin/_bootstrap

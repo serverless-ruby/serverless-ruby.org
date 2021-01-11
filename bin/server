@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+
+docker-compose run \
+  -p 3000:3000 \
+  serverless-ruby-org \
+  ./bin/_server

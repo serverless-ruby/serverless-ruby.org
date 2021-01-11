@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -e
+
+CLOUDFORMATION_BUCKET=$(cat .bucket-name)
+
+# https://github.com/aws/aws-sam-cli/issues/2447
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+IMAGE_REPOSITORY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/myorg/serverless-ruby-org"
+
+./bin/_build
+
+sam build \
+  --parameter-overrides \
+    RailsEnv="${RAILS_ENV}"
+
+echo "== SAM package..."
+sam package \
+  --region "$AWS_DEFAULT_REGION" \
+  --template-file ./.aws-sam/build/template.yaml \
+  --output-template-file ./.aws-sam/build/packaged.yaml \
+  --image-repository "$IMAGE_REPOSITORY" \
+  --s3-bucket "${CLOUDFORMATION_BUCKET}" \
+  --s3-prefix "serverless-ruby-org-${RAILS_ENV}"
+
+echo "== SAM deploy..."
+sam deploy \
+  --region "$AWS_DEFAULT_REGION" \
+  --template-file ./.aws-sam/build/packaged.yaml \
+  --stack-name "serverless-ruby-org-${RAILS_ENV}" \
+  --image-repository "$IMAGE_REPOSITORY" \
+  --capabilities "CAPABILITY_IAM" \
+  --parameter-overrides \
+    RailsEnv="${RAILS_ENV}"

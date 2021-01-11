@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: ServerlessRubyOrg
+
+Parameters:
+
+  RailsEnv:
+    Type: String
+    Default: staging
+    AllowedValues:
+      - staging
+      - production
+
+Resources:
+
+  RailsLambda:
+    Type: AWS::Serverless::Function
+    Metadata:
+      DockerContext: ./.lamby/RailsLambda
+      Dockerfile: Dockerfile
+      DockerTag: web
+    Properties:
+      Environment:
+        Variables:
+          RAILS_ENV: !Ref RailsEnv
+      Events:
+        HttpApiProxy:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RailsHttpApi
+      FunctionName: !Sub serverless-ruby-org-${RailsEnv}
+      MemorySize: 512
+      PackageType: Image
+      Timeout: 30
+
+  RailsHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: !Ref RailsEnv
+
+Outputs:
+
+  ServerlessRubyOrgHttpApiUrl:
+    Description: Lambda Invoke URL
+    Value: !Sub https://${RailsHttpApi}.execute-api.${AWS::Region}.amazonaws.com/${RailsEnv}/
+
+  ServerlessRubyOrgLambdaResourceArn:
+    Description: Lambda ARN
+    Value: RailsLambda.Arn
