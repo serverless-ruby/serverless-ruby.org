@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+//import Turbo from "@hotwired/turbo"
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -14,4 +14,6 @@ require("turbolinks").start()
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+
 import "controllers"
+import '../stylesheets/application'
