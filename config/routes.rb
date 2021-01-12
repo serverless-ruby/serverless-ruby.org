@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'application#index'
+  root to: 'posts#index'
+
+  resources :posts
 
   get '/auth/github/callback', to: 'sessions#create'
   get '/auth/failure' => 'sessions#failure'

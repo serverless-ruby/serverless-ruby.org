@@ -1,0 +1,10 @@
+<%= turbo_frame_tag 'posts' do %>
+  <%= flash_notice %>
+
+  <h1><%= @post.title %></h1>
+  <%= simple_format(@post.description) %>
+
+  <%= link_to 'edit', edit_post_path(@post), class: 'btn btn-outline-primary ' %>
+
+  <%= link_to 'destroy', post_path(@post), method: :delete, class: 'btn btn-outline-danger' %>
+<% end %>

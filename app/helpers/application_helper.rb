@@ -5,4 +5,24 @@ module ApplicationHelper
 
     tag.turbo_frame(**attributes.merge(id: id, src: src, target: target).compact, &block)
   end
+
+  def error_message(model, field)
+    if model.errors.any?
+      tag.div(model.errors.full_messages_for(field).join(', '), class: "form-text text-danger", id: help_tag_id(field))
+    end
+  end
+
+  def help_tag(description, field)
+    tag.div(description, class: "form-text", id: help_tag_id(field))
+  end
+
+  def help_tag_id(field)
+    "#{field}-help"
+  end
+
+  def flash_notice
+    if flash[:notice]
+      tag.div flash[:notice], class: "alert alert-warning", role: "alert"
+    end
+  end
 end

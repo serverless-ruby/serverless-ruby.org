@@ -4,6 +4,6 @@ Dynamoid.configure do |config|
   config.secret_key = ENV['SECRET_ACCESS_KEY']
   config.region = 'us-east-1'
 
-  config.namespace = 'serverless_ruby_org'
+  config.namespace = "sr_#{Rails.env}"
 end
 

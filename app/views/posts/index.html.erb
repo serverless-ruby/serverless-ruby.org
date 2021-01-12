@@ -1,0 +1,15 @@
+<%= turbo_frame_tag 'posts' do %>
+  <%= flash_notice %>
+
+  <h1>Latest Serverless Ruby posts</h1>
+  <% @posts.each do |post| %>
+    <div class="card">
+      <div class="card-body">
+        <%= link_to post.title, post %>
+
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to 'Add post', new_post_path(@post), class: 'btn btn-outline-success' %>
+<% end %>

@@ -9,6 +9,8 @@ class User
   field :url
   field :sign_in_count, :integer
 
+  has_many :posts
+
   def self.find_via_omniauth(github_uid)
     User.find(github_uid)
   end
