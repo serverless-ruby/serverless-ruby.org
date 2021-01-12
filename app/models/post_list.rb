@@ -28,6 +28,6 @@ class PostList
       .map { |public_uid, sortkey| public_uid }
 
     published_posts = Post.find(latest_uids.first(20))
-    published_posts.sort_by(&:published_at)
+    published_posts.sort_by(&:published_at).reverse
   end
 end

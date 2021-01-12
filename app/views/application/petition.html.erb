@@ -1,0 +1,70 @@
+<h1>We are successful !</h1>
+
+<p><strong>Ruby</strong> is now a first class citizen in Serverless word!</p>
+
+<h2>Petition</h2>
+
+<p>
+  I've originally launched <a href="https://www.serverless-ruby.org">serverless-ruby.org</a> in <span title="9th March 2018">March 2018</span> as a petition to bring
+  attention of Serverless providers (like AWS Lambda, Azure Functions) that <strong>Ruby</strong> is a viable and popular enough language to be supported as a next native programming language in their FaaS stack.
+  Developers were able to sign the petition by their Github.  In the end the petition was signed by <strong>1602 Developers</strong> !!!
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-heart-eyes" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M11.315 10.014a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.488 0c1.398-.864 3.544 1.838-.952 3.434-3.067-3.554.19-4.858.952-3.434z"/>
+  </svg>
+</p>
+
+<div class="row">
+  <div class="col">
+    <%= image_tag 'petition-overview-2.png', class: "img-fluid", alt: "Petition Overview" %>
+  </div>
+  
+  <div class="col">
+    <%= image_tag 'petition-overview-1.png', class: "img-fluid", alt: "Petition Overview" %>
+  </div>
+</div>
+
+
+<h2>Ruby FaaS</h2>
+
+<p>
+  It was a long way but now <a href="https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/">AWS Lambda supports Ruby</a> 
+  allowing Ruby folks to do not only background processing stuff with Lambda functions, but also run <a href="https://blog.eq8.eu/article/sinatra-on-aws-lambda.html">Sinatra Ruby webserver</a>.
+  On top of that thanks to awesome project <a href="https://lamby.custominktech.com/">Lamby</a> you can even run Dockerized Ruby on Rails applications on AWS Lambda!
+</p>
+
+<p>
+  You don't believe me? Well this entire website runs Ruby on Rails under <a href="https://github.com/customink/lamby">Lamby</a> on AWS Lambda with a full Redis caching, DynamoDB database and Github Oauth2 integration!
+  You can check out source on <a href="https://github.com/serverless-ruby/serverless-ruby.org">Github</a>
+</p>
+
+<p>
+  That's why I've decided the petition page can retire in peace as best of what could happened
+  already happened and turned it into <a href="http://rubyflow.com/">Ruby Flow</a> style post platform where
+  you can submit your Serverless Ruby articles, howtos, T.I.L notes, ...
+</p>
+
+
+<h4>Timeline</h4>
+
+<ul>
+  <li><strong>9th March 2018</strong> serverless-ruby.org Petition website was launched</li>
+  <li><strong>12th March 2018</strong> I gave a talk in London about <a href="https://skillsmatter.com/skillscasts/11594-lrug-march">types of Ruby microservice architectures</a> mentioning the petition after which the petition signs blasted</li>
+  <li><strong>August 2018</strong> <a href="https://twitter.com/parrudanet">Paulo Arruda</a> created <a href="https://faastruby.io/">faastRuby</a> first dedicated Ruby serverless provider. It's no longer an active platform but still Paulo deserves a HUGE RESPECT for all the effort in pushing Ruby this direction</li>
+  <li><strong>29.11.2018</strong><a href="https://aws.amazon.com/blogs/compute/announcing-ruby-support-for-aws-lambda/">AWS Lambda supports Ruby</a></li>
+  <li><strong>November 2018</strong> <a href="https://github.com/xiangshen-dk">xiangshen-dk</a> creates first <a href="https://github.com/aws-samples/serverless-sinatra-sample">AWS Lambda Sinatra</a> app</li>
+  <li><strong>8th December 2020</strong> <a href="https://dev.to/metaskills">Ken Collins</a> announces <a href="https://github.com/customink/lamby">Lamby</a> <a href="https://dev.to/aws-heroes/lambda-containers-with-rails-a-perfect-match-4lgb">in his article</a></li>
+  <li><strong>January 2020</strong> This website is turned into Lamby based serverless Ruby on Rails post forum </li>
+</ul>
+
+<p class="text-muted">Anything I've forget ? Anything I got wrong ? Please <a href="https://www.eq8.eu">contact me</a> or <a href="https://github.com/serverless-ruby/serverless-ruby.org">create PR</a> </p>
+
+<h2>1602 Developers signed the petition:</h2>
+
+Here they are:
+
+<% JSON.parse(File.read(Rails.root.join('db', 'petition.json'))).each do |signee| %>
+  <%= link_to signee['username'], signee['url'], title: "#{signee['username']} sign at #{signee['signed_at']}}" %>
+<% end %>
+

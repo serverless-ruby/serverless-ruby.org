@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   NotAuthenticated = Class.new(StandardError)
 
   rescue_from NotAuthenticated do
-    redirect_to root_path, notice: "Please sign in via Github"
+    redirect_to '/auth/github', notice: "Please sign in via Github"
   end
 
   def authenticate

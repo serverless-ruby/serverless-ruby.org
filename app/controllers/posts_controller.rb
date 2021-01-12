@@ -18,8 +18,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new
     set_fields
+    @post.user = current_user
 
     if @post.save
+      PostList.add!(@post)
       redirect_to post_path(@post)
     else
       render :form, status: 422

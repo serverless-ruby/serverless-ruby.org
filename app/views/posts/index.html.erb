@@ -1,12 +1,22 @@
 <%= turbo_frame_tag 'posts' do %>
   <%= flash_notice %>
 
-  <h1>Latest Serverless Ruby posts</h1>
-  <% @posts.each do |post| %>
-    <div class="card">
-      <div class="card-body">
-        <%= link_to post.title, post %>
+  <div class="row">
+    <h1>Latest Serverless Ruby posts</h1>
+  </div>
 
+  <% @posts.each do |post| %>
+    <div class="row gx-5">
+      <div class="col p-3">
+        <div class="card p-3">
+
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to post.title, post %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Published <%= l(post.published_at) %></h6>
+
+            <%= link_to 'Show', post, class: "card-link" %>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>
