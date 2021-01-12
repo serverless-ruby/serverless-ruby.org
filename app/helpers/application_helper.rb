@@ -25,4 +25,10 @@ module ApplicationHelper
       tag.div flash[:notice], class: "alert alert-warning", role: "alert"
     end
   end
+
+  def new_post_link(css: nil)
+    data = nil
+    data = { 'turbo-frame' => '_top' } unless current_user # github login redirect cannot be via turbo frames
+    link_to 'Add a post', new_post_path, class: css, data: data
+  end
 end

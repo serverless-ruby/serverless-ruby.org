@@ -1,5 +1,6 @@
 class User
   include Dynamoid::Document
+  include DudePolicy::IsADude   # this adds `user.dude`
 
   table name: :users, key: :github_uid, capacity_mode: :on_demand
 
@@ -7,7 +8,6 @@ class User
   field :username
   field :avatar_url
   field :url
-  field :sign_in_count, :integer
 
   has_many :posts
 
@@ -24,5 +24,10 @@ class User
     user.sign_in_count = 1
     user.save
     user
+  end
+
+  def ==(other_user)
+    other_user.is_a?(User)
+    github_uid && github_uid == other_user.github_uid
   end
 end

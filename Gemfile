@@ -19,6 +19,7 @@ gem 'webpacker'
 # be logic gems
 gem 'omniauth', require: false
 gem 'omniauth-github', require: false
+gem 'dude_policy'
 
 
 group :assets do

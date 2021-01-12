@@ -1,5 +1,6 @@
 class Post
   include Dynamoid::Document
+  include DudePolicy::HasPolicy  # this adds post.policy
 
   table name: :posts, key: :public_uid, capacity_mode: :on_demand
 

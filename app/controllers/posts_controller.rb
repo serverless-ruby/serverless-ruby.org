@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate, except: [:show, :index]
+  before_action :find_post, except: [:new, :index, :create]
+  before_action :authorize, except: [:new, :index, :create, :show]
 
   def index
     @posts = PostList.latest_posts
@@ -44,6 +45,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    PostList.remove!(@post)
     redirect_to posts_path
   end
 
@@ -58,5 +60,9 @@ class PostsController < ApplicationController
 
     def find_post
       @post = Post.find(params[:id]) #find by public_uid
+    end
+
+    def authorize
+      raise NotAuthorized unless current_user.dude.able_to_update_post?(@post)
     end
 end
