@@ -2,6 +2,7 @@
   <%= flash_notice %>
 
   <h1><%= @post.title %></h1>
+  <h6 class="text-muted">Published <%= l(@post.published_at, format: :short) %> by <%= link_to @post.user.username, @post.user.url %></h6>
   <%= simple_format(@post.description) %>
 
   <% if current_user.dude.able_to_update_post?(@post) %>
