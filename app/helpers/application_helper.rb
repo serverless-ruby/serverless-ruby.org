@@ -33,6 +33,7 @@ module ApplicationHelper
   end
 
   def markdown_to_html(text)
+    return nil unless text.present?
     simple_format(Kramdown::Document.new(text).to_html)
   end
 end
