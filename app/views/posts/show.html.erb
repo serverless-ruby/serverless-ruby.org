@@ -14,13 +14,24 @@
 
   <h6 class="text-muted">Published <%= l(@post.published_at, format: :short) %> by <%= link_to @post.user.username, @post.user.url %></h6>
 
-  <strong>Description:</strong>
-  <div class="card p-3">
+  <div class="card p-1">
     <div class="card-body">
       <%= markdown_to_html(@post.description) %>
     </div>
   </div>
 
+  <p>
+    <div class="input-group mb-3" data-controller="clipboard">
+      <span class="input-group-text" id="copy-post-url" data-action="click->clipboard#copy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-files" viewBox="0 0 16 16">
+          <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
+        </svg>
+      </span>
+      <input type="text" value="<%= post_url(@post) %>" class="form-control" aria-describedby="copy-post-url" readonly="readonly" data-clipboard-target="source">
+    </div>
+  </p>
+
+  <%= link_to 'All posts', posts_path, class: 'btn btn-outline-success' %>
   <% if current_user.dude.able_to_update_post?(@post) %>
     <%= link_to 'edit', edit_post_path(@post), class: 'btn btn-outline-primary ' %>
     <%= link_to 'destroy', post_path(@post), method: :delete, class: 'btn btn-outline-danger' %>

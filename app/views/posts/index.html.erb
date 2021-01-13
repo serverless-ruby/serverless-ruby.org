@@ -1,8 +1,14 @@
 <%= turbo_frame_tag 'posts' do %>
   <%= flash_notice %>
 
+
   <div class="row">
     <h1>Latest Serverless Ruby posts</h1>
+
+    <p>
+      Do you have any article, news or project related to Serverless Ruby? Please share it with us! <%= link_to 'Create a new post', new_post_path %>.
+    </p>
+
   </div>
 
   <%= render partial: 'posts/post', collection: @posts, cached: true %>

@@ -9,9 +9,9 @@
         <h4 class="card-title"><%= link_to post.title, post %></h5>
         <div class="card-subtitle mb-2 text-muted">Published <%= l(post.published_at, format: :short) %> by <%= link_to post.user.username, post.user.url %></div>
 
-        <p><%= truncate(post.description, length: 35) %></p>
+        <p><%= truncate(strip_tags(markdown_to_html(post.description)), length: 80) %></p>
 
-        <%= link_to 'Read', post, class: "card-link" %>
+        <%= link_to 'Read', post, class: "card-link", data: { 'turbo-frame' => '_top' } %>
         <%= link_to 'Go to url', post, class: "card-link" if post.url.present?%>
       </div>
     </div>
