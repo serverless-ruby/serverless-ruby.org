@@ -12,7 +12,10 @@ class User
   has_many :posts
 
   def self.find_via_omniauth(github_uid)
-    User.find(github_uid)
+    begin
+      User.find(github_uid)
+    rescue Dynamoid::Errors::RecordNotFound
+    end
   end
 
   def self.create_with_omniauth(auth)
