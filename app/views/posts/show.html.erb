@@ -9,7 +9,7 @@
   <% end %>
 
   <% if @post.url.present? %>
-    <p ><%= link_to @post.url %></p>
+    <p ><%= link_to @post.url, @post.url %></p>
   <% end %>
 
   <h6 class="text-muted">Published <%= l(@post.published_at, format: :short) %> by <%= link_to @post.user.username, @post.user.url %></h6>

@@ -24,7 +24,6 @@ class User
     user.avatar_url = auth['extra']['raw_info']['avatar_url']
     user.username = auth['info']['nickname']
     user.url = auth['info']['urls']['GitHub']
-    user.sign_in_count = 1
     user.save
     user
   end
