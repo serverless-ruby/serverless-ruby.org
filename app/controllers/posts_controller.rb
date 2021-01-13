@@ -51,11 +51,12 @@ class PostsController < ApplicationController
 
   private
     def set_fields
-      post_params = params.require(:post).permit(:title, :description)
+      post_params = params.require(:post).permit(:title, :description, :url)
 
       # This is due to a bug in Dynamoid bug where we cannot set attributes via @post.attributes = {}
       @post.title = post_params[:title]
       @post.description = post_params[:description]
+      @post.url = post_params[:url]
     end
 
     def find_post

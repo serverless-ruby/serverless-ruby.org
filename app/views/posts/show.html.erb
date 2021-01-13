@@ -1,9 +1,25 @@
 <%= turbo_frame_tag 'posts' do %>
   <%= flash_notice %>
 
-  <h1><%= @post.title %></h1>
+
+  <% if @post.url.present? %>
+    <h1><%= link_to @post.title, @post.url %></h1>
+  <% else %>
+    <h1><%= @post.title %></h1>
+  <% end %>
+
+  <% if @post.url.present? %>
+    <p ><%= link_to @post.url %></p>
+  <% end %>
+
   <h6 class="text-muted">Published <%= l(@post.published_at, format: :short) %> by <%= link_to @post.user.username, @post.user.url %></h6>
-  <%= simple_format(@post.description) %>
+
+  <strong>Description:</strong>
+  <div class="card p-3">
+    <div class="card-body">
+      <%= simple_format(@post.description) %>
+    </div>
+  </div>
 
   <% if current_user.dude.able_to_update_post?(@post) %>
     <%= link_to 'edit', edit_post_path(@post), class: 'btn btn-outline-primary ' %>

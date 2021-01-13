@@ -6,6 +6,7 @@ class Post
 
   field :public_uid
   field :title
+  field :url
   field :description
   field :karma, :integer
   field :published_at, :datetime, default: -> { Time.now }, store_as_string: true

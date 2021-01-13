@@ -9,9 +9,15 @@
     </div>
 
     <div class="mb-3">
+      <%= f.label      :url, class: "form-label" %>
+      <%= f.text_field :url, class: "form-control", 'aria-describedby': help_tag_id(:url), placeholder: "https://my-blog/awesome-serverless-ruby-feature.html" %>
+      <%= error_message(@post, :url) %>
+    </div>
+
+    <div class="mb-3">
       <%= f.label      :description, class: "form-label" %>
       <%= f.text_area :description, class: "form-control" %>
-      <%= error_message(@post, :description) || help_tag('Feel free to add links to any articles', :description) %>
+      <%= error_message(@post, :description) || help_tag('Feel free to add html tags supported by Rails simple_format', :description) %>
     </div>
 
     <%#<div class="mb-3">%>

@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def create
-    auth = request.env["omniauth.auth"]
     if user = User.find_via_omniauth(auth['uid'])
       notice_msg = 'Signed in successfully'
     else
