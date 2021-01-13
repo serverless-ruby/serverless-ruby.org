@@ -16,8 +16,8 @@
 
     <div class="mb-3">
       <%= f.label      :description, class: "form-label" %>
-      <%= f.text_area :description, class: "form-control" %>
-      <%= error_message(@post, :description) || help_tag('Feel free to add html tags supported by Rails simple_format', :description) %>
+      <%= f.text_area :description, class: "form-control", row: 10, style: 'min-height: 15em' %>
+      <%= error_message(@post, :description) || help_tag("Supports markdown", :description) %>
     </div>
 
     <%#<div class="mb-3">%>

@@ -1,0 +1,19 @@
+<div class="row gx-5">
+  <div class="col p-3">
+    <div class="card">
+
+      <div class="card-body">
+        <%#= image_tag post.user.avatar_url %>
+        <%#<img src="..." class="rounded float-start" alt="...">%>
+        <%= image_tag post.user.avatar_url, class: "rounded float-start img-thumbnail me-3", height: 130, width: 130 %>
+        <h4 class="card-title"><%= link_to post.title, post %></h5>
+        <div class="card-subtitle mb-2 text-muted">Published <%= l(post.published_at, format: :short) %> by <%= link_to post.user.username, post.user.url %></div>
+
+        <p><%= truncate(post.description, length: 35) %></p>
+
+        <%= link_to 'Read', post, class: "card-link" %>
+        <%= link_to 'Go to url', post, class: "card-link" if post.url.present?%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -66,6 +66,7 @@
 
 Here they are:
 
+
 <% JSON.parse(File.read(Rails.root.join('db', 'petition.json'))).each do |signee| %>
   <%= link_to signee['username'], signee['url'], title: "#{signee['username']} sign at #{signee['signed_at']}}" %>
 <% end %>

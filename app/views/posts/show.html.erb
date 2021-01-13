@@ -17,7 +17,7 @@
   <strong>Description:</strong>
   <div class="card p-3">
     <div class="card-body">
-      <%= simple_format(@post.description) %>
+      <%= markdown_to_html(@post.description) %>
     </div>
   </div>
 

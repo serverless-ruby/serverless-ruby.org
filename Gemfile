@@ -20,6 +20,7 @@ gem 'webpacker'
 gem 'omniauth', require: false
 gem 'omniauth-github', require: false
 gem 'dude_policy'
+gem 'kramdown'
 
 
 group :assets do

@@ -31,4 +31,8 @@ module ApplicationHelper
     data = { 'turbo-frame' => '_top' } unless current_user # github login redirect cannot be via turbo frames
     link_to 'Add a post', new_post_path, class: css, data: data
   end
+
+  def markdown_to_html(text)
+    simple_format(Kramdown::Document.new(text).to_html)
+  end
 end
