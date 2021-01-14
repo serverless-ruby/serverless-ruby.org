@@ -32,6 +32,14 @@ module ApplicationHelper
     link_to 'Add a post', new_post_path, class: css, data: data
   end
 
+  def new_post_inline_link
+    if current_user
+      link_to 'Create a new post', new_post_path
+    else
+      link_to 'Sign in via Github to create a new post', '/auth/github', data: { 'turbo-frame' => '_top' }
+    end
+  end
+
   def markdown_to_html(text)
     return nil unless text.present?
     simple_format(Kramdown::Document.new(text).to_html)
