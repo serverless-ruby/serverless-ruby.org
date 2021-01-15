@@ -1,3 +1,11 @@
+<%= content_for :open_graph do %>
+  <%= tag.meta nil, property: "og:title", content: @post.title %>
+  <%= tag.meta nil, property: "og:type",  content: 'website' %>
+  <%= tag.meta nil, property: "og:url",   content: post_url(@post) %>
+  <%= tag.meta nil, property: "og:image", content: post_image_url(@post) %>
+  <%= tag.meta nil, property: "og:description", content: truncate(strip_tags(markdown_to_html(@post.description)), length: 180) %>
+<% end %>
+
 <%= turbo_frame_tag 'posts' do %>
   <%= flash_notice %>
 
@@ -8,7 +16,7 @@
   <% end %>
 
   <% if @post.url.present? %>
-    <p ><%= link_to @post.url, @post.url %></p>
+    <p><strong><%= link_to @post.url, @post.url %></strong></p>
   <% end %>
 
   <h6 class="text-muted">Published <%= l(@post.published_at, format: :short) %> by <%= link_to @post.user.username, @post.user.url %></h6>

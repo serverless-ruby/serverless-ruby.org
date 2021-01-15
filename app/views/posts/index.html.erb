@@ -1,3 +1,11 @@
+<%= content_for :open_graph do %>
+  <%= tag.meta nil, property: "og:title", content: 'Serverless Ruby' %>
+  <%= tag.meta nil, property: "og:description", content: 'Latest posts from the world of Serverless Ruby (FaaS Ruby)' %>
+  <%= tag.meta nil, property: "og:type",  content: 'website' %>
+  <%= tag.meta nil, property: "og:url",   content: root_url %>
+  <%= tag.meta nil, property: "og:image", content: image_url('faas-ruby.jpg') %>
+<% end %>
+
 <%= turbo_frame_tag 'posts' do %>
   <%= flash_notice %>
 
