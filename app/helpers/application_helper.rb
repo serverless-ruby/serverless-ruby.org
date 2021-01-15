@@ -44,4 +44,9 @@ module ApplicationHelper
     return nil unless text.present?
     simple_format(Kramdown::Document.new(text).to_html)
   end
+
+  def post_image_url(post)
+    return post.image_url if post.image_url.present?
+    post.user.avatar_url
+  end
 end

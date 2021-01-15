@@ -57,6 +57,7 @@ class PostsController < ApplicationController
       @post.title = post_params[:title]
       @post.description = post_params[:description]
       @post.url = post_params[:url]
+      @post.set_graph_data
     end
 
     def find_post

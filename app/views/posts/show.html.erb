@@ -1,7 +1,6 @@
 <%= turbo_frame_tag 'posts' do %>
   <%= flash_notice %>
 
-
   <% if @post.url.present? %>
     <h1><%= link_to @post.title, @post.url %></h1>
   <% else %>
@@ -14,6 +13,7 @@
 
   <h6 class="text-muted">Published <%= l(@post.published_at, format: :short) %> by <%= link_to @post.user.username, @post.user.url %></h6>
 
+  <%= image_tag post_image_url(@post), class: "rounded float-start img-thumbnail me-3", height: 130, width: 130 %>
   <div class="card p-1">
     <div class="card-body">
       <%= markdown_to_html(@post.description) %>

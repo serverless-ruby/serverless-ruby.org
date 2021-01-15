@@ -7,6 +7,7 @@ class Post
   field :public_uid
   field :title
   field :url
+  field :image_url
   field :description
   field :karma, :integer
   field :published_at, :datetime, default: -> { Time.now }, store_as_string: true
@@ -24,6 +25,19 @@ class Post
 
   def inspect
     "<Post '#{public_uid}' title: '#{title}'>"
+  end
+
+  def set_graph_data
+    return if url.blank?
+    og = OpenGraph.new(url)
+
+    if image_u = og.images.first
+      self.image_url = image_u
+    end
+
+    if title.blank? && og.title.present?
+      self.title = og.title
+    end
   end
 
   private
