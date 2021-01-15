@@ -5,8 +5,8 @@
       <div class="card-body">
         <%#= image_tag post.user.avatar_url %>
         <%#<img src="..." class="rounded float-start" alt="...">%>
-        <%= image_tag post_image_url(post), class: "rounded float-start img-thumbnail me-3", height: 130, width: 130 %>
-        <h4 class="card-title"><%= link_to post.title, post %></h5>
+        <%= image_tag post_image_url(post), class: "rounded float-end img-thumbnail me-3", height: 130, width: 130 %>
+        <h3 class="card-title"><%= link_to post.title, post %></h3>
         <div class="card-subtitle mb-2 text-muted">Published <%= l(post.published_at, format: :short) %> by <%= link_to post.user.username, post.user.url %></div>
 
         <p><%= truncate(strip_tags(markdown_to_html(post.description)), length: 80) %></p>
