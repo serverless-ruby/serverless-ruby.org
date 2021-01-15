@@ -39,7 +39,7 @@
     </div>
   </p>
 
-  <%= link_to 'All posts', posts_path, class: 'btn btn-outline-success' %>
+  <%= link_to 'All posts', posts_path, class: 'btn btn-success' %>
   <% if current_user.dude.able_to_update_post?(@post) %>
     <%= link_to 'edit', edit_post_path(@post), class: 'btn btn-outline-primary ' %>
     <%= link_to 'destroy', post_path(@post), method: :delete, class: 'btn btn-outline-danger', data: {confirm: "Are you sure?"} %>

@@ -11,8 +11,8 @@
 
         <p><%= truncate(strip_tags(markdown_to_html(post.description)), length: 80) %></p>
 
-        <%= link_to 'Read', post, class: "card-link", data: { 'turbo-frame' => '_top' } %>
-        <%= link_to 'Go to url', post, class: "card-link" if post.url.present?%>
+        <%= link_to 'Read', post, class: "card-link btn btn-success", data: { 'turbo-frame' => '_top' } %>
+        <%= link_to 'Go to source url', post, class: "card-link btn btn-outline-primary" if post.url.present?%>
       </div>
     </div>
   </div>
