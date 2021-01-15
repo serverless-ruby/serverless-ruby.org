@@ -21,6 +21,7 @@ gem 'omniauth', require: false
 gem 'omniauth-github', require: false
 gem 'dude_policy'
 gem 'kramdown'
+gem 'opengraph_parser'
 
 
 group :assets do
