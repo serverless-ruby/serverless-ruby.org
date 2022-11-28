@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails', '~> 6.0.3'
+gem 'mimemagic', github: 'serverless-ruby/mimemagic', ref: '3543363026121ee28d98dfce4cb6366980c055ee'
 
 gem 'dotenv-rails', require: true
 gem 'lamby', require: false
