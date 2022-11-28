@@ -46,8 +46,13 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
-  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+
+  ## I use to use free Redis cluster in order to demonstrate caching.
+  ## however cluster is no longer $0 so I needed to remove Redis cache :(
+  #
+  #   config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+  config.cache_store = :null_store # Sorry Redis is not cheap :( - no cache from now on
+
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
